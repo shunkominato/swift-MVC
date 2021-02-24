@@ -37,10 +37,10 @@ class NextViewController: UIViewController {
     @IBAction func back(_ sender: Any) {
         
         if beforeCount < correctedCount {
-            UserDefaults.standard.set(correctedCount, forKey:"beforCount")
+            UserDefaults.standard.set(correctedCount, forKey:"beforeCount")
             delegate?.nowScore(score:correctedCount)
         } else if beforeCount > correctedCount {
-            UserDefaults.standard.set(beforeCount, forKey:"beforCount")
+            UserDefaults.standard.set(beforeCount, forKey:"beforeCount")
         }
         
         dismiss(animated: true, completion: nil)
