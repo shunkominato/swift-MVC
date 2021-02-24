@@ -22,11 +22,19 @@ class ViewController: UIViewController,NowScoreDelegate {
     let imageList = ImageList()
     var pickedAnswer = false
     
-    var withOutMP3 = WithOutMP3()
+    var soundFile = SoundFile()
+    var changeColor = ChangeColor()
+    var gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        imageView.layer.cornerRadius = 20.0
+        gradientLayer = changeColor.changeColor(topR: 0.07, topG: 0.13, topB: 0.26, topAlpha: 1.0, bottomR: 0.54, bottomG: 0.74, bottomB: 0.74, bottomAlpha: 1.0)
+        
+        gradientLayer.frame = view.bounds
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,11 +59,11 @@ class ViewController: UIViewController,NowScoreDelegate {
         if (sender as AnyObject).tag == 1 {
             pickedAnswer
              = true
-            withOutMP3.playSound(filename: "maruSound", extensionName: "mp3")
+            soundFile.playSound(filename: "maruSound", extensionName: "mp3")
             
         } else if (sender as AnyObject).tag == 2 {
             pickedAnswer = false
-            
+            soundFile.playSound(filename: "batsuSound", extensionName: "mp3")
         }
         
         check()
@@ -85,6 +93,7 @@ class ViewController: UIViewController,NowScoreDelegate {
     }
     
     func nowScore(score: Int) {
+        soundFile.playSound(filename: "sound", extensionName: "mp3")
         maxScore = score
     }
     
